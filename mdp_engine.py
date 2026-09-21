@@ -215,21 +215,24 @@ def triage(text=None, temperature=None, heart_rate=None, spo2=None, pain=None):
 
 # ---------------------------------------------------------------- 6. Graphs
 def build_reference_graph(P, R, hide_zero=True):
-    """Same style as the class reference graph: edge label = 'action (prob), R: reward'.
-    Parallel edges between the same two states are merged into one edge with a multi-line label."""
+    """Reference style ('action (prob), R: reward') with colours:
+    node fill = health state, edge colour = destination state, label line colour = action."""
     from graphviz import Digraph
-    dot = Digraph(graph_attr={'rankdir': 'TB', 'nodesep': '1.2', 'ranksep': '1.4'},
-                  node_attr={'shape': 'ellipse', 'fontsize': '14'},
-                  edge_attr={'fontsize': '10'})
+    EDGE_COLORS = {'Healthy': '#1e8449', 'Sick': '#d68910', 'Critical': '#c0392b'}
+
+    dot = Digraph(graph_attr={'rankdir': 'TB', 'nodesep': '1.2', 'ranksep': '1.4', 'bgcolor': 'white'},
+                  node_attr={'shape': 'ellipse', 'style': 'filled', 'fontsize': '14', 'penwidth': '1.5'},
+                  edge_attr={'fontsize': '10', 'penwidth': '1.6'})
     for s in states:
-        dot.node(s)
+        dot.node(s, fillcolor=STATE_COLORS[s], color=EDGE_COLORS[s])
+
     for s in P:
         for s2 in states:
-            labels = [f"{a} ({P[s][a].get(s2, 0)}),  R: {R[s][a]}"
-                      for a in P[s]
-                      if not (hide_zero and P[s][a].get(s2, 0) == 0)]
-            if labels:
-                dot.edge(s, s2, label="\n".join(labels))
+            lines = [f'<FONT COLOR="{ACTION_COLORS[a]}">{a} ({P[s][a].get(s2, 0)}),  R: {R[s][a]}</FONT>'
+                     for a in P[s]
+                     if not (hide_zero and P[s][a].get(s2, 0) == 0)]
+            if lines:
+                dot.edge(s, s2, label='<' + '<BR/>'.join(lines) + '>', color=EDGE_COLORS[s2])
     return dot
 
 
