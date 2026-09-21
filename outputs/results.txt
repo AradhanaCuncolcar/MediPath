@@ -1,0 +1,30 @@
+OPTIMAL TREATMENT POLICY (gamma=0.9)
+{'Healthy': 'No Treatment', 'Sick': 'Medication', 'Critical': 'Surgery'}
+
+STATE VALUES
+{'Healthy': 76.00742212255565, 'Sick': 53.43555477232483, 'Critical': 29.77550328871032}
+
+Q-VALUES
+          No Treatment  Medication  Surgery
+Healthy          76.01       74.45    65.53
+Sick             41.68       53.44    42.83
+Critical         18.95       24.77    29.78
+
+POLICY COMPARISON
+                     avg_discounted_reward  pct_days_healthy  avg_treatment_cost  pct_end_critical
+Optimal (MDP)                        49.00             79.06               21.32              4.75
+Always No Treatment                 -39.20             17.67                0.00             62.75
+Always Medication                    36.59             78.83               60.00              6.10
+Always Surgery                      -38.01             66.05              240.00             11.75
+Random                                0.54             63.98              100.76             14.85
+
+GAMMA SENSITIVITY
+            Healthy          Sick      Critical
+gamma                                          
+0.10   No Treatment  No Treatment  No Treatment
+0.30   No Treatment    Medication  No Treatment
+0.50   No Treatment    Medication    Medication
+0.70   No Treatment    Medication       Surgery
+0.90   No Treatment    Medication       Surgery
+0.95   No Treatment    Medication       Surgery
+0.99   No Treatment    Medication       Surgery
