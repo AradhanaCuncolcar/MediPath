@@ -1,0 +1,72 @@
+{
+  "P": {
+    "Healthy": {
+      "No Treatment": {
+        "Healthy": 0.9,
+        "Sick": 0.081,
+        "Critical": 0.02
+      },
+      "Medication": {
+        "Healthy": 0.918,
+        "Sick": 0.07,
+        "Critical": 0.011
+      },
+      "Surgery": {
+        "Healthy": 0.826,
+        "Sick": 0.113,
+        "Critical": 0.061
+      }
+    },
+    "Sick": {
+      "No Treatment": {
+        "Healthy": 0.1,
+        "Sick": 0.6,
+        "Critical": 0.299
+      },
+      "Medication": {
+        "Healthy": 0.593,
+        "Sick": 0.281,
+        "Critical": 0.126
+      },
+      "Surgery": {
+        "Healthy": 0.482,
+        "Sick": 0.281,
+        "Critical": 0.237
+      }
+    },
+    "Critical": {
+      "No Treatment": {
+        "Healthy": 0.0,
+        "Sick": 0.098,
+        "Critical": 0.902
+      },
+      "Medication": {
+        "Healthy": 0.044,
+        "Sick": 0.383,
+        "Critical": 0.573
+      },
+      "Surgery": {
+        "Healthy": 0.281,
+        "Sick": 0.437,
+        "Critical": 0.282
+      }
+    }
+  },
+  "R": {
+    "Healthy": {
+      "No Treatment": 10.0,
+      "Medication": 8.0,
+      "Surgery": 1.96
+    },
+    "Sick": {
+      "No Treatment": -2.03,
+      "Medication": -4.02,
+      "Surgery": -10.01
+    },
+    "Critical": {
+      "No Treatment": -9.93,
+      "Medication": -12.01,
+      "Surgery": -18.02
+    }
+  }
+}
